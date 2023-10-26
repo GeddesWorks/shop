@@ -11,26 +11,26 @@ runs-on: ubuntu-latest
         java-version: '12.x'
     - uses: subosito/flutter-action@v1
       with:
-        flutter-version: '1.12.x' # you can use 1.12
+        flutter-version: '3.13.x' # you can use 1.12
         channel: 'beta' # Currently you have to use beta channel for Flutter web.
     - name: Upgrades flutter
       run: flutter upgrade
-      working-directory: ./example
+      working-directory: ./webshop
     - name: Enable Web
       run: flutter config --enable-web
-      working-directory: ./example
+      working-directory: ./webshop
     - name: Install dependencies
       run: flutter packages get
-      working-directory: ./example
+      working-directory: ./webshop
     - name: Build Web
       run: flutter build web
-      working-directory: ./example
+      working-directory: ./webshop
     - name: Deploy
       run: |
-        cd example/build/web
+        cd webshop/build/web
         git init
-        git config user.name  "CI"
-        git config user.email "flutter-ci@github.com"
+        git config user.name  "GeddesWorks"
+        git config user.email "collin.geddes@gmail.com"
         git remote add secure-origin https://${{ secrets.ACCESS_TOKEN }}@github.com/GeddesWorks/shop.git
         git checkout -b gh-pages
         git add .
