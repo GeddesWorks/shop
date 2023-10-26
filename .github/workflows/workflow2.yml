@@ -17,8 +17,8 @@ jobs:
       with:
         flutter-version: '3.13.x' # you can use 1.12
         channel: 'beta' # Currently you have to use beta channel for Flutter web.
-    - name: Upgrades flutter --force
-      run: flutter upgrade
+    - name: Upgrades flutter 
+      run: flutter upgrade --force
       working-directory: ./webshop
     - name: Enable Web
       run: flutter config --enable-web
