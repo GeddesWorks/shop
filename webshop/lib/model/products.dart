@@ -1,28 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Product {
-  List<Image> images = [];
-  String name = '';
-  String description = '';
-  double price = 0.0;
+  final List<Image> images;
+  final String name;
+  final String description;
+  final double price;
+
+  Product(
+      {required this.images,
+      required this.name,
+      required this.description,
+      required this.price});
 }
 
-List<Product> getProducts() {
-  Product Crystal = Product();
-  Crystal.name = 'Crystal Dragon';
-  Crystal.description = 'A dragon made of crystal';
-  Crystal.price = 15.0;
-  Crystal.images.add(Image.asset('images/GeddesWorks.png'));
-  Crystal.images.add(Image.asset('images/GeddesWorksCutout.png'));
-
-  return [
-    Crystal,
-    Crystal,
-    Crystal,
-    Crystal,
-    Crystal,
-    Crystal,
-    Crystal,
-    Crystal
-  ];
+class ProductModel {
+  List<Product>? products;
+  bool inProgress = false;
 }
