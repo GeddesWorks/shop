@@ -69,10 +69,4 @@ class HomeScreenState extends State<HomeScreen> {
             ),
     );
   }
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }
 }
