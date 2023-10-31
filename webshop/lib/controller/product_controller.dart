@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webshop/view/home_screen.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../model/products.dart';
@@ -53,7 +54,8 @@ class ProductController {
         images[prefix.name] = List<Image>.empty(growable: true);
         for (var value in values.items) {
           var url = await value.getDownloadURL();
-          images[prefix.name]!.add(Image(image: NetworkImage(url)));
+          images[prefix.name]!
+              .add(Image(image: NetworkImage(url), fit: BoxFit.cover));
         }
       }
 
@@ -94,21 +96,5 @@ class ProductController {
         },
       );
     }
-  }
-
-  Future<List<Image>> getImages(String name) async {
-    List<Image> images = List<Image>.empty(growable: true);
-
-    try {
-      await FirebaseStorage.instance.ref().child(name).listAll().then((value) {
-        value.items.forEach((element) async {
-          images.add(Image.network(await element.getDownloadURL()));
-        });
-      });
-    } catch (e) {
-      images.add(Image.asset('images/GeddesWorksCutout.png'));
-    }
-
-    return images;
   }
 }

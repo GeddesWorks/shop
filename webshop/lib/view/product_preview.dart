@@ -5,8 +5,9 @@ import 'package:webshop/model/products.dart';
 
 class ProductView {}
 
-Widget product_preview(Product product) {
+Widget product_preview(Product product, BuildContext context) {
   final CarouselController _carouselController = CarouselController();
+  double screenWidth = MediaQuery.of(context).size.width;
 
   return Container(
     width: 200,
@@ -19,21 +20,28 @@ Widget product_preview(Product product) {
       children: [
         Expanded(
           child: Swiper(
-            control: SwiperControl(color: Colors.white),
+            control: (screenWidth > 1200)
+                ? const SwiperControl(color: Colors.white)
+                : null,
             autoplay: true,
             itemCount: product.images?.length ?? 0,
             itemBuilder: (context, index) {
               return product.images?[index] ??
                   Image.asset("images/GeddesWorks.png");
             },
-            pagination: SwiperPagination(
+            pagination: const SwiperPagination(
                 builder: DotSwiperPaginationBuilder(
                     color: Colors.white, activeColor: Colors.black)),
           ),
         ),
-        Text(product.name),
-        Text(product.description),
-        Text(product.price.toString()),
+        Column(
+          children: [
+            Text(
+              product.name,
+            ),
+            Text('\$ ${product.price.toString()}'),
+          ],
+        ),
       ],
     ),
   );

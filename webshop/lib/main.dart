@@ -19,8 +19,12 @@ class WebShop extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           colorSchemeSeed: Colors.grey,
-          fontFamily: 'Roboto'),
+          fontFamily: 'Roboto',
+          scrollbarTheme: ScrollbarThemeData(
+            thumbColor: MaterialStateProperty.all<Color>(Colors.black),
+          )),
       initialRoute: HomeScreen.routeName,
+      title: 'GeddesWorks Shop',
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
       },
