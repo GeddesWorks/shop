@@ -17,12 +17,13 @@ class WebShop extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          useMaterial3: true,
-          colorSchemeSeed: Colors.grey,
-          fontFamily: 'Roboto',
-          scrollbarTheme: ScrollbarThemeData(
-            thumbColor: MaterialStateProperty.all<Color>(Colors.black),
-          )),
+        useMaterial3: true,
+        colorSchemeSeed: Colors.grey,
+        fontFamily: 'Roboto',
+        scrollbarTheme: ScrollbarThemeData(
+          thumbColor: MaterialStateProperty.all<Color>(Colors.black),
+        ),
+      ),
       initialRoute: HomeScreen.routeName,
       title: 'GeddesWorks Shop',
       routes: {

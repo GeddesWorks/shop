@@ -37,9 +37,13 @@ Widget product_preview(Product product, BuildContext context) {
         Column(
           children: [
             Text(
+              style: Theme.of(context).textTheme.headlineMedium,
               product.name,
             ),
-            Text('\$ ${product.price.toString()}'),
+            Text(
+              style: Theme.of(context).textTheme.headlineSmall,
+              '\$ ${product.price.toString()}',
+            ),
           ],
         ),
       ],

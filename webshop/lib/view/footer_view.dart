@@ -14,31 +14,43 @@ class Footer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Logo
-          // Image.asset('assets/logo.png'), // Replace with your logo image
-
-          // Contact Info
-          const Column(
+          Row(
+            children: [
+              Image.asset(
+                'images/GeddesWorks.png',
+                width: 100,
+                height: 100,
+              ),
+              const SizedBox(width: 16.0),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'GeddesWorks Shop',
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  Text(
+                    'Oklahoma City, OK',
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Contact Info:',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18.0,
-                ),
+                style: Theme.of(context).textTheme.labelLarge,
               ),
               Text(
                 'Email: geddesworx@gmail.com',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+                style: Theme.of(context).textTheme.labelMedium,
               ),
               Text(
                 'Phone: (405) 757-1880',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+                style: Theme.of(context).textTheme.labelMedium,
               ),
             ],
           ),
