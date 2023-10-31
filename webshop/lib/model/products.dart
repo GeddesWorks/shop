@@ -2,13 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Product {
-  final List<Image> images;
+  List<Image>? images;
   final String name;
   final String description;
   final double price;
+  final String id;
 
   Product(
-      {required this.images,
+      {this.images,
+      required this.id,
       required this.name,
       required this.description,
       required this.price});

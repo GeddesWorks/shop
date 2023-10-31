@@ -21,9 +21,10 @@ Widget product_preview(Product product) {
           child: Swiper(
             control: SwiperControl(color: Colors.white),
             autoplay: true,
-            itemCount: product.images.length,
+            itemCount: product.images?.length ?? 0,
             itemBuilder: (context, index) {
-              return product.images[index];
+              return product.images?[index] ??
+                  Image.asset("images/GeddesWorks.png");
             },
             pagination: SwiperPagination(
                 builder: DotSwiperPaginationBuilder(
