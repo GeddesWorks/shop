@@ -8,23 +8,29 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    var screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
-      padding: EdgeInsets.all(width > 1200 ? 12.0 : 6.0),
+      padding: EdgeInsets.all(screenWidth > 1200 ? 12.0 : 6.0),
       color: Colors.grey,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              if (width > 325)
+              if (screenWidth > 325)
                 Image.asset(
                   'images/GeddesWorksCutout.png',
                   width: 50,
                   height: 50,
                   fit: BoxFit.contain,
                 ),
+              SizedBox(
+                  width: screenWidth > 1200
+                      ? 16.0
+                      : screenWidth > 600
+                          ? 8.0
+                          : 1.0),
               Image.asset(
                 'images/authorizedsellerbadge.png',
                 width: 50,
@@ -63,7 +69,7 @@ class Footer extends StatelessWidget {
               ),
             ],
           ),
-          if (width > 600)
+          if (screenWidth > 600)
             ElevatedButton(
               onPressed: () => con.launchEmail(null),
               style: ButtonStyle(

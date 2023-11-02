@@ -100,4 +100,10 @@ class ProductController {
       );
     }
   }
+
+  void setDisplaySingle(bool value) {
+    state.callSetState(() {
+      state.model.displaySingle = value;
+    });
+  }
 }

@@ -28,12 +28,12 @@ class WebShop extends StatelessWidget {
         ),
         textTheme: TextTheme(
           headlineSmall: TextStyle(
-            fontSize: 12 * textScaleFactor,
+            fontSize: 10 * textScaleFactor,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ),
           headlineMedium: TextStyle(
-            fontSize: 20 * textScaleFactor,
+            fontSize: 15 * textScaleFactor,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ),

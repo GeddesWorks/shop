@@ -19,4 +19,5 @@ class Product {
 class ProductModel {
   List<Product>? products;
   bool inProgress = false;
+  bool displaySingle = false;
 }

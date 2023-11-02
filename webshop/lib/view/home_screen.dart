@@ -41,20 +41,40 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    int crossAxisCount = (screenWidth > 1200)
+    int crossAxisCount = screenWidth > 1200
         ? 4
-        : (screenWidth > 600)
+        : screenWidth > 600
             ? 3
-            : 2;
+            : screenWidth > 400
+                ? 2
+                : 1;
+    if (model.displaySingle) crossAxisCount = 1;
+    if (screenWidth > 1200) con.setDisplaySingle(false);
 
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: [
             logoCutout,
+            SizedBox(
+                width: screenWidth > 1200
+                    ? 16.0
+                    : screenWidth > 600
+                        ? 8.0
+                        : 4.0),
             const Text('GeddesWorks Shop'),
           ],
         ),
+        actions: [
+          if (screenWidth < 1200 && screenWidth > 400) const Text("Large View"),
+          if (screenWidth < 1200 && screenWidth > 400)
+            Switch(
+              value: model.displaySingle,
+              onChanged: (value) {
+                con.setDisplaySingle(value);
+              },
+            ),
+        ],
         backgroundColor: Colors.grey,
       ),
       body: model.inProgress
@@ -64,24 +84,26 @@ class HomeScreenState extends State<HomeScreen> {
           : Column(
               children: [
                 Expanded(
-                  child: GridView(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: crossAxisCount,
-                      childAspectRatio: 4 / 3,
-                    ),
-                    children: [
-                      for (Product product in model.products!)
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Container(
+                  child: Padding(
+                    padding: EdgeInsets.all(screenWidth > 1200 ? 16.0 : 8.0),
+                    child: GridView(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: crossAxisCount,
+                        childAspectRatio: 4 / 3,
+                        mainAxisSpacing: screenWidth > 1200 ? 20 : 10,
+                        crossAxisSpacing: screenWidth > 1200 ? 20 : 10,
+                      ),
+                      children: [
+                        for (Product product in model.products!)
+                          Container(
                             decoration: BoxDecoration(
                               color: Colors.grey,
                               borderRadius: BorderRadius.circular(0),
                             ),
                             child: product_preview(product, context),
                           ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
