@@ -89,7 +89,7 @@ class WebShop extends StatelessWidget {
     } else if (screenWidth >= 600) {
       return 1.0; // Medium-sized screens
     } else {
-      return .75; // Smaller screens, default text size
+      return .8; // Smaller screens, default text size
     }
   }
 }
