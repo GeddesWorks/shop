@@ -1,6 +1,7 @@
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:webshop/controller/email_controller.dart';
 import 'package:webshop/controller/product_controller.dart';
 import 'package:webshop/model/products.dart';
 import 'package:webshop/view/product_preview.dart';
@@ -24,6 +25,7 @@ class HomeScreenState extends State<HomeScreen> {
   final logoFull = Image.asset('images/GeddesWorks.png');
   late ProductModel model;
   late ProductController con;
+  late EmailController econ;
 
   @override
   void initState() {
@@ -31,6 +33,7 @@ class HomeScreenState extends State<HomeScreen> {
     model = ProductModel();
     con = ProductController(this);
     con.getProducts();
+    econ = EmailController();
   }
 
   void callSetState(fn) => setState(fn);
@@ -83,6 +86,16 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
+      floatingActionButton: screenWidth <= 600
+          ? ElevatedButton(
+              onPressed: () => econ.launchEmail(null),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              ),
+              child: Text('Contact Us'),
+            )
+          : null,
       bottomNavigationBar: SizedBox(
         height: screenWidth > 1200
             ? 100

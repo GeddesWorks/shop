@@ -8,20 +8,23 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+
     return Container(
-      padding:
-          EdgeInsets.all(MediaQuery.of(context).size.width > 1200 ? 12.0 : 6.0),
+      padding: EdgeInsets.all(width > 1200 ? 12.0 : 6.0),
       color: Colors.grey,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              Image.asset(
-                'images/GeddesWorksCutout.png',
-                width: 100,
-                height: 100,
-              ),
+              if (width > 325)
+                Image.asset(
+                  'images/GeddesWorksCutout.png',
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.contain,
+                ),
               Image.asset(
                 'images/authorizedsellerbadge.png',
                 width: 50,
@@ -60,16 +63,15 @@ class Footer extends StatelessWidget {
               ),
             ],
           ),
-
-          // Email Button
-          ElevatedButton(
-            onPressed: () => con.launchEmail(null),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+          if (width > 600)
+            ElevatedButton(
+              onPressed: () => con.launchEmail(null),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              ),
+              child: Text('Contact Us'),
             ),
-            child: Text('Contact Us'),
-          ),
         ],
       ),
     );
