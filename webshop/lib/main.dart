@@ -15,6 +15,9 @@ class WebShop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var textScaleFactor =
+        calculateTextScaleFactor(MediaQuery.of(context).size.width);
+
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
@@ -23,6 +26,53 @@ class WebShop extends StatelessWidget {
         scrollbarTheme: ScrollbarThemeData(
           thumbColor: MaterialStateProperty.all<Color>(Colors.black),
         ),
+        textTheme: TextTheme(
+          headlineSmall: TextStyle(
+            fontSize: 12 * textScaleFactor,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+          headlineMedium: TextStyle(
+            fontSize: 20 * textScaleFactor,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+          headlineLarge: TextStyle(
+            fontSize: 20 * textScaleFactor,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+          bodySmall: TextStyle(
+            fontSize: 12 * textScaleFactor,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: 16 * textScaleFactor,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+          bodyLarge: TextStyle(
+            fontSize: 20 * textScaleFactor,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+          labelSmall: TextStyle(
+            fontSize: 5 * textScaleFactor,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+          labelMedium: TextStyle(
+            fontSize: 9 * textScaleFactor,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+          labelLarge: TextStyle(
+            fontSize: 15 * textScaleFactor,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+        ),
       ),
       initialRoute: HomeScreen.routeName,
       title: 'GeddesWorks Shop',
@@ -30,5 +80,16 @@ class WebShop extends StatelessWidget {
         HomeScreen.routeName: (context) => HomeScreen(),
       },
     );
+  }
+
+  double calculateTextScaleFactor(double screenWidth) {
+    // You can adjust these values based on your design and responsiveness needs
+    if (screenWidth >= 1200) {
+      return 1.5; // Large screens, increase text size
+    } else if (screenWidth >= 600) {
+      return 1.0; // Medium-sized screens
+    } else {
+      return .75; // Smaller screens, default text size
+    }
   }
 }

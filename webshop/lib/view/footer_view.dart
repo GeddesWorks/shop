@@ -9,7 +9,8 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding:
+          EdgeInsets.all(MediaQuery.of(context).size.width > 1200 ? 12.0 : 6.0),
       color: Colors.grey,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -17,9 +18,14 @@ class Footer extends StatelessWidget {
           Row(
             children: [
               Image.asset(
-                'images/GeddesWorks.png',
+                'images/GeddesWorksCutout.png',
                 width: 100,
                 height: 100,
+              ),
+              Image.asset(
+                'images/authorizedsellerbadge.png',
+                width: 50,
+                height: 50,
               ),
               const SizedBox(width: 16.0),
               Column(

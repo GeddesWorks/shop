@@ -84,7 +84,11 @@ class HomeScreenState extends State<HomeScreen> {
               ],
             ),
       bottomNavigationBar: SizedBox(
-        height: screenWidth > 600 ? 100 : 50,
+        height: screenWidth > 1200
+            ? 100
+            : screenWidth > 600
+                ? 75
+                : 50,
         child: Footer(),
       ),
     );
