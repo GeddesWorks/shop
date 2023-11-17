@@ -55,25 +55,10 @@ class ProductController {
         images[prefix.name] = List<String>.empty(growable: true);
         for (var value in values.items) {
           var url = await value.getDownloadURL();
-          var img = NetworkImage(url);
           images[prefix.name]!.add(url);
         }
       }
 
-      // names.forEach((name) async {
-      //   await FirebaseStorage.instance
-      //       .ref()
-      //       .child(name)
-      //       .listAll()
-      //       .then((value) {
-      //     value.items.forEach((element) {
-      //       element.getDownloadURL().then((value) {
-      //         products[names.indexOf(name)].images?.add(Image.network(value));
-      //         print(value);
-      //       });
-      //     });
-      //   });
-      // });
       for (int i = 0; i < products.length; i++) {
         products[i].imageUrls = images[products[i].id];
       }
