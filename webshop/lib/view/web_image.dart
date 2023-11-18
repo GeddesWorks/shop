@@ -11,6 +11,7 @@ class WebImage extends StatelessWidget {
     return Image.network(
       url,
       height: height ?? 50.0,
+      fit: BoxFit.cover,
       errorBuilder: (
         BuildContext context,
         Object exception,
