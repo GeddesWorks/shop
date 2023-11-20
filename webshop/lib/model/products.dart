@@ -16,9 +16,3 @@ class Product {
       required this.description,
       required this.price});
 }
-
-class ProductModel {
-  List<Product>? products;
-  bool inProgress = false;
-  bool displaySingle = false;
-}

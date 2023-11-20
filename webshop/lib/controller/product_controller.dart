@@ -15,8 +15,6 @@ class ProductController {
 
   Future<void> getProducts() async {
     List<Product> products = List<Product>.empty(growable: true);
-    List<String> names = List<String>.empty(growable: true);
-    var images = new Map<String, List<String>>();
 
     state.callSetState(() {
       state.model.inProgress = true;
@@ -27,41 +25,16 @@ class ProductController {
           .collection("product")
           .get()
           .then((value) {
-        value.docs.forEach((element) async {
-          names.add(element.id);
-        });
-      });
-
-      await FirebaseFirestore.instance
-          .collection("product")
-          .get()
-          .then((value) {
-        value.docs.forEach((element) async {
+        value.docs.forEach((element) {
           products.add(Product(
             id: element.id,
             name: element["name"],
             description: element["description"] ?? "",
             price: element["price"],
-            // images: await getImages(element.id)));
+            imageUrls: List.from(element["imageUrls"]),
           ));
         });
       });
-
-      var ref = FirebaseStorage.instance.ref();
-      var list = await ref.listAll();
-
-      for (var prefix in list.prefixes) {
-        var values = await prefix.listAll();
-        images[prefix.name] = List<String>.empty(growable: true);
-        for (var value in values.items) {
-          var url = await value.getDownloadURL();
-          images[prefix.name]!.add(url);
-        }
-      }
-
-      for (int i = 0; i < products.length; i++) {
-        products[i].imageUrls = images[products[i].id];
-      }
 
       state.callSetState(() {
         state.model.inProgress = false;

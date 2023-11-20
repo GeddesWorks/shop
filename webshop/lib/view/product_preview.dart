@@ -34,10 +34,6 @@ Widget product_preview(Product product, BuildContext context) {
                 url: product.imageUrls?[index] ??
                     'https://imgs.search.brave.com/2ReQeXoSJNl54r5vmMTh340F_J3vLyVIjIziZ3fQHF8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG40/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvc2VjdXJpdHkt/MjgzLzY0LzEzLTEy/OC5wbmc',
               );
-              // return Image(
-              //     image: CachedNetworkImageProvider(product.imageUrls?[index] ??
-              //         'https://imgs.search.brave.com/2ReQeXoSJNl54r5vmMTh340F_J3vLyVIjIziZ3fQHF8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG40/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvc2VjdXJpdHkt/MjgzLzY0LzEzLTEy/OC5wbmc'),
-              //     fit: BoxFit.cover);
             },
             pagination: const SwiperPagination(
               builder: DotSwiperPaginationBuilder(
@@ -54,9 +50,6 @@ Widget product_preview(Product product, BuildContext context) {
                         child: WebImage(
                           url: item,
                         ),
-                        // child: Image(
-                        //     image: CachedNetworkImageProvider(item),
-                        //     fit: BoxFit.cover),
                       ))
                   .toList() ??
               [],

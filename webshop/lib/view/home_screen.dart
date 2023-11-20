@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:webshop/controller/email_controller.dart';
 import 'package:webshop/controller/product_controller.dart';
+import 'package:webshop/model/home.dart';
 import 'package:webshop/model/products.dart';
 import 'package:webshop/view/product_preview.dart';
 
@@ -23,14 +24,14 @@ class HomeScreenState extends State<HomeScreen> {
   final logoCutout =
       Image.asset('images/GeddesWorksCutout.png', width: 50, height: 50);
   final logoFull = Image.asset('images/GeddesWorks.png');
-  late ProductModel model;
+  late HomeShopModel model;
   late ProductController con;
   late EmailController econ;
 
   @override
   void initState() {
     super.initState();
-    model = ProductModel();
+    model = HomeShopModel();
     con = ProductController(this);
     con.getProducts();
     econ = EmailController();
