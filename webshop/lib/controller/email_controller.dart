@@ -43,7 +43,7 @@ class EmailController {
       scheme: 'mailto',
       path: 'geddesworx@gmail.com',
       query:
-          'subject=Product Order&body=Hello, my name is _______. I am interested in ${product.product.name}. I would like to order ${product.quantity} of them ${product.quantity > 1 ? "at \$${product.product.price} apiece, totaling \$${product.quantity * product.product.price}." : "for \$${product.product.price}."} ${product.paint ? 'I would like them painted: \n${paintRequest}' : ''} ${product.ship ? 'I would like them shipped to: \n${product.shipAddress}.' : ""}',
+          'subject=Product Order&body=Hello, my name is _______. \n\nI am interested in ${product.product.name}. \nI would like to order ${product.quantity} of them ${product.quantity > 1 ? "at \$${product.product.price} a piece, totaling \$${product.quantity * product.product.price}." : "for \$${product.product.price}."} ${product.paint ? '\nI would like them painted: \n${paintRequest}' : ''} ${product.ship ? '\nI would like them shipped to: \n${product.shipAddress}.' : ""}',
     );
 
     if (await canLaunchUrl(emailLaunchUri)) {
