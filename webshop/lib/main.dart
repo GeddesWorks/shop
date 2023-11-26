@@ -61,7 +61,7 @@ class WebShop extends StatelessWidget {
             color: Colors.black,
           ),
           labelSmall: TextStyle(
-            fontSize: 5 * textScaleFactor,
+            fontSize: 8 * textScaleFactor,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ),

@@ -65,11 +65,11 @@ class Footer extends StatelessWidget {
               ),
               Text(
                 'Email: geddesworx@gmail.com',
-                style: Theme.of(context).textTheme.labelMedium,
+                style: Theme.of(context).textTheme.labelSmall,
               ),
               Text(
                 'Phone: (405) 757-1880',
-                style: Theme.of(context).textTheme.labelMedium,
+                style: Theme.of(context).textTheme.labelSmall,
               ),
             ],
           ),
