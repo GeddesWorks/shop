@@ -80,7 +80,7 @@ class Footer extends StatelessWidget {
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
               ),
-              child: Text('Contact Us'),
+              child: const Text('Contact Us'),
             ),
         ],
       ),
