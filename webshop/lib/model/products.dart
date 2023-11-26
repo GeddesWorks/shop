@@ -8,11 +8,15 @@ class Product {
   final String description;
   final double price;
   final String id;
+  final bool ship;
+  final bool paint;
 
   Product(
       {this.imageUrls,
       required this.id,
       required this.name,
       required this.description,
-      required this.price});
+      required this.price,
+      required this.ship,
+      required this.paint});
 }

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webshop/controller/email_controller.dart';
 import 'package:webshop/controller/product_controller.dart';
+import 'package:webshop/controller/shop_controller.dart';
+import 'package:webshop/view/shop_home_screen.dart';
+
+import '../model/shopHome.dart';
 
 class Footer extends StatelessWidget {
   EmailController con = EmailController();
@@ -82,4 +86,66 @@ class Footer extends StatelessWidget {
       ),
     );
   }
+}
+
+AppBar ShopAppBar(ShopHomeScreenState state) {
+  final model = HomeShopModel();
+  final con = ShopController(state);
+  final econ = EmailController();
+  final logoCutout =
+      Image.asset('images/GeddesWorksCutout.png', width: 50, height: 50);
+  final logoFull = Image.asset('images/GeddesWorks.png');
+
+  var screenWidth = MediaQuery.of(state.context).size.width;
+
+  return AppBar(
+    title: Row(
+      children: [
+        logoCutout,
+        SizedBox(
+            width: model.screenWidth > 1200
+                ? 16.0
+                : model.screenWidth > 600
+                    ? 8.0
+                    : 4.0),
+        const Text('GeddesWorks Shop'),
+      ],
+    ),
+    actions: [
+      if (model.screenWidth < 1200 && model.screenWidth > 400)
+        const Text("Large View"),
+      if (model.screenWidth < 1200 && model.screenWidth > 400)
+        Switch(
+          value: model.displaySingle,
+          onChanged: (value) {
+            con.setDisplaySingle(value);
+          },
+        ),
+    ],
+    backgroundColor: Colors.grey,
+  );
+}
+
+AppBar genericAppBar(BuildContext context) {
+  final logoCutout =
+      Image.asset('images/GeddesWorksCutout.png', width: 50, height: 50);
+  final logoFull = Image.asset('images/GeddesWorks.png');
+
+  var screenWidth = MediaQuery.of(context).size.width;
+
+  return AppBar(
+    title: Row(
+      children: [
+        logoCutout,
+        SizedBox(
+            width: screenWidth > 1200
+                ? 16.0
+                : screenWidth > 600
+                    ? 8.0
+                    : 4.0),
+        const Text('GeddesWorks Shop'),
+      ],
+    ),
+    backgroundColor: Colors.grey,
+  );
 }

@@ -3,81 +3,58 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:webshop/controller/email_controller.dart';
 import 'package:webshop/controller/product_controller.dart';
-import 'package:webshop/model/home.dart';
+import 'package:webshop/controller/shop_controller.dart';
+import 'package:webshop/model/shopHome.dart';
 import 'package:webshop/model/products.dart';
 import 'package:webshop/view/product_preview.dart';
 
-import 'footer_view.dart';
+import 'headers.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ShopHomeScreen extends StatefulWidget {
+  const ShopHomeScreen({super.key});
 
-  static const routeName = '/home';
+  static const routeName = '/shopHome';
 
   @override
   State<StatefulWidget> createState() {
-    return HomeScreenState();
+    return ShopHomeScreenState();
   }
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class ShopHomeScreenState extends State<ShopHomeScreen> {
   final logoCutout =
       Image.asset('images/GeddesWorksCutout.png', width: 50, height: 50);
   final logoFull = Image.asset('images/GeddesWorks.png');
   late HomeShopModel model;
-  late ProductController con;
+  late ShopController con;
   late EmailController econ;
+  late ProductController pcon;
 
   @override
   void initState() {
     super.initState();
     model = HomeShopModel();
-    con = ProductController(this);
-    con.getProducts();
+    con = ShopController(this);
+    pcon = ProductController(this);
     econ = EmailController();
+    pcon.getProducts();
   }
 
   void callSetState(fn) => setState(fn);
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    int crossAxisCount = screenWidth > 1200
+    model.screenWidth = MediaQuery.of(context).size.width;
+    model.crossAxisCount = model.screenWidth > 1200
         ? 4
-        : screenWidth > 600
+        : model.screenWidth > 600
             ? 3
-            : screenWidth > 400
+            : model.screenWidth > 400
                 ? 2
                 : 1;
-    if (model.displaySingle) crossAxisCount = 1;
-    if (screenWidth > 1200) con.setDisplaySingle(false);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            logoCutout,
-            SizedBox(
-                width: screenWidth > 1200
-                    ? 16.0
-                    : screenWidth > 600
-                        ? 8.0
-                        : 4.0),
-            const Text('GeddesWorks Shop'),
-          ],
-        ),
-        actions: [
-          if (screenWidth < 1200 && screenWidth > 400) const Text("Large View"),
-          if (screenWidth < 1200 && screenWidth > 400)
-            Switch(
-              value: model.displaySingle,
-              onChanged: (value) {
-                con.setDisplaySingle(value);
-              },
-            ),
-        ],
-        backgroundColor: Colors.grey,
-      ),
+      appBar: ShopAppBar(this),
       body: model.inProgress
           ? const Center(
               child: CircularProgressIndicator(),
@@ -86,13 +63,14 @@ class HomeScreenState extends State<HomeScreen> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(screenWidth > 1200 ? 16.0 : 8.0),
+                    padding:
+                        EdgeInsets.all(model.screenWidth > 1200 ? 16.0 : 8.0),
                     child: GridView(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
+                        crossAxisCount: model.crossAxisCount,
                         childAspectRatio: 4 / 3,
-                        mainAxisSpacing: screenWidth > 1200 ? 20 : 10,
-                        crossAxisSpacing: screenWidth > 1200 ? 20 : 10,
+                        mainAxisSpacing: model.screenWidth > 1200 ? 20 : 10,
+                        crossAxisSpacing: model.screenWidth > 1200 ? 20 : 10,
                       ),
                       children: [
                         for (Product product in model.products!)
@@ -101,7 +79,7 @@ class HomeScreenState extends State<HomeScreen> {
                               color: Colors.grey,
                               borderRadius: BorderRadius.circular(0),
                             ),
-                            child: product_preview(product, context),
+                            child: product_preview(product, context, this),
                           ),
                       ],
                     ),
@@ -109,7 +87,7 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-      floatingActionButton: screenWidth <= 600
+      floatingActionButton: model.screenWidth <= 600
           ? ElevatedButton(
               onPressed: () => econ.launchEmail(null),
               style: ButtonStyle(
@@ -120,9 +98,9 @@ class HomeScreenState extends State<HomeScreen> {
             )
           : null,
       bottomNavigationBar: SizedBox(
-        height: screenWidth > 1200
+        height: model.screenWidth > 1200
             ? 100
-            : screenWidth > 600
+            : model.screenWidth > 600
                 ? 75
                 : 50,
         child: Footer(),

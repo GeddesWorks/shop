@@ -5,12 +5,12 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:webshop/view/home_screen.dart';
+import 'package:webshop/view/shop_home_screen.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../model/products.dart';
 
 class ProductController {
-  HomeScreenState state;
+  ShopHomeScreenState state;
   ProductController(this.state);
 
   Future<void> getProducts() async {
@@ -30,7 +30,9 @@ class ProductController {
             id: element.id,
             name: element["name"],
             description: element["description"] ?? "",
+            paint: element["paint"] ?? false,
             price: element["price"],
+            ship: element["ship"] ?? false,
             imageUrls: List.from(element["imageUrls"]),
           ));
         });
@@ -52,16 +54,12 @@ class ProductController {
                 ],
                 name: "Error getting products: $e",
                 description: '',
+                ship: false,
+                paint: false,
                 price: 0)
           ];
         },
       );
     }
-  }
-
-  void setDisplaySingle(bool value) {
-    state.callSetState(() {
-      state.model.displaySingle = value;
-    });
   }
 }

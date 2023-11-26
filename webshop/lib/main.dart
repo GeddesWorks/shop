@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:webshop/model/products.dart';
+import 'package:webshop/view/error_screen.dart';
+import 'package:webshop/view/product_view.dart';
 import 'firebase_options.dart';
-import 'view/home_screen.dart';
+import 'view/shop_home_screen.dart';
 
 Future<void> main() async {
   await Firebase.initializeApp(
@@ -63,7 +66,7 @@ class WebShop extends StatelessWidget {
             color: Colors.black,
           ),
           labelMedium: TextStyle(
-            fontSize: 9 * textScaleFactor,
+            fontSize: 12 * textScaleFactor,
             fontWeight: FontWeight.w400,
             color: Colors.black,
           ),
@@ -74,10 +77,28 @@ class WebShop extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: HomeScreen.routeName,
+      initialRoute: ShopHomeScreen.routeName,
       title: 'GeddesWorks Shop',
       routes: {
-        HomeScreen.routeName: (context) => HomeScreen(),
+        ShopHomeScreen.routeName: (context) => const ShopHomeScreen(),
+        ProductView.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args != null && args is Product) {
+            return ProductView(
+              product: args,
+            );
+          } else {
+            return const ErrorScreen('Problem loading product');
+          }
+        },
+        ErrorScreen.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args != null && args is String) {
+            return ErrorScreen(args);
+          } else {
+            return const ErrorScreen('Unknown error occurred');
+          }
+        },
       },
     );
   }
