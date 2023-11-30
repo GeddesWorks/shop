@@ -37,6 +37,7 @@ jobs:
         git config user.email "collin.geddes@gmail.com"
         git remote add secure-origin https://${{ secrets.ACCESS_TOKEN }}@github.com/GeddesWorks/shop.git
         git checkout -b gh-pages
+        echo "3dshop.geddesworks.com" > CNAME
         git add .
         git commit -m "Updated docs"
         git push --force secure-origin gh-pages
