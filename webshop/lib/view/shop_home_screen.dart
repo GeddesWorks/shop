@@ -59,33 +59,36 @@ class ShopHomeScreenState extends State<ShopHomeScreen> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : Column(
-              children: [
-                Expanded(
-                  child: Padding(
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
                     padding:
                         EdgeInsets.all(model.screenWidth > 1200 ? 16.0 : 8.0),
-                    child: GridView(
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: model.crossAxisCount,
                         childAspectRatio: 4 / 3,
                         mainAxisSpacing: model.screenWidth > 1200 ? 20 : 10,
                         crossAxisSpacing: model.screenWidth > 1200 ? 20 : 10,
                       ),
-                      children: [
-                        for (Product product in model.products!)
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius: BorderRadius.circular(0),
-                            ),
-                            child: product_preview(product, context, this),
+                      itemCount: model.products?.length ?? 0,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(0),
                           ),
-                      ],
+                          child: product_preview(
+                              model.products![index], context, this),
+                        );
+                      },
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
       floatingActionButton: model.screenWidth <= 600
           ? ElevatedButton(
