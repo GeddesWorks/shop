@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:webshop/controller/email_controller.dart';
 import 'package:webshop/controller/productView_controller.dart';
+import 'package:webshop/model/constants.dart';
 import 'package:webshop/model/productView.dart';
 import 'package:webshop/model/products.dart';
 import 'package:webshop/view/web_image.dart';
@@ -58,6 +59,13 @@ class ProductViewState extends State<ProductView> {
                 children: [
                   imageView(screenWidth),
                   productInfo(screenWidth),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      printShopDisclaimer,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ),
                 ],
               ),
       ),
@@ -226,6 +234,18 @@ class ProductViewState extends State<ProductView> {
                 ),
               ],
             ),
+            if (screenWidth > 600)
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      printShopDisclaimer,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ),
+                ],
+              ),
           ],
         ),
       ),

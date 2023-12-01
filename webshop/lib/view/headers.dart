@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:webshop/controller/email_controller.dart';
 import 'package:webshop/controller/product_controller.dart';
 import 'package:webshop/controller/shop_controller.dart';
+import 'package:webshop/model/constants.dart';
 import 'package:webshop/view/shop_home_screen.dart';
 
 import '../model/shopHome.dart';
@@ -45,7 +46,7 @@ class Footer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'GeddesWorks Shop',
+                    printShopName,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   Text(
@@ -108,7 +109,7 @@ AppBar ShopAppBar(ShopHomeScreenState state) {
                 : model.screenWidth > 600
                     ? 8.0
                     : 4.0),
-        const Text('GeddesWorks Shop'),
+        const Text(printShopName),
       ],
     ),
     actions: [
