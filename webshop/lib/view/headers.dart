@@ -5,6 +5,7 @@ import 'package:webshop/controller/product_controller.dart';
 import 'package:webshop/controller/shop_controller.dart';
 import 'package:webshop/model/constants.dart';
 import 'package:webshop/view/shop_home_screen.dart';
+import 'dart:js' as js;
 
 import '../model/shopHome.dart';
 
@@ -14,12 +15,24 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
+    Image venmoLogo = Image.asset(
+      'images/venmo-logo-1024x269.webp', // Replace with your Venmo logo image path
+      width: screenWidth * .08, // Adjust the width as needed
+    );
+    Image cashappLogo = Image.asset(
+      'images/cash-app-logo-512x512.png', // Replace with your CashApp logo image path
+      width: screenWidth * .08, // Adjust the width as needed
+    );
+    Image paypalLogo = Image.asset(
+      'images/PayPal.png', // Replace with your PayPal logo image path
+      width: screenWidth * .08, // Adjust the width as needed
+    );
 
     return Container(
       padding: EdgeInsets.all(screenWidth > 1200 ? 12.0 : 6.0),
       color: Colors.grey,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
             children: [
@@ -73,6 +86,27 @@ class Footer extends StatelessWidget {
                 style: Theme.of(context).textTheme.labelSmall,
               ),
             ],
+          ),
+          IconButton(
+            onPressed: () {
+              js.context
+                  .callMethod('open', ['https://venmo.com/u/Collin-Geddes']);
+            },
+            icon: venmoLogo,
+          ),
+          IconButton(
+            onPressed: () {
+              js.context
+                  .callMethod('open', ["https://cash.app/\$CollinGeddes"]);
+            },
+            icon: cashappLogo,
+          ),
+          IconButton(
+            onPressed: () {
+              js.context.callMethod('open',
+                  ['https://www.paypal.me/Collins3DPrintsOK?locale.x=en_US']);
+            },
+            icon: paypalLogo,
           ),
           if (screenWidth > 600)
             ElevatedButton(

@@ -91,8 +91,8 @@ class ShopHomeScreenState extends State<ShopHomeScreen> {
                     )
                   : Column(
                       children: [
-                        welcomeImages(context, model.screenWidth / 2),
-                        topInfo(context, model.screenWidth / 2),
+                        welcomeImages(context, model.screenWidth),
+                        topInfo(context, model.screenWidth),
                       ],
                     ),
             ),
@@ -157,31 +157,63 @@ class ShopHomeScreenState extends State<ShopHomeScreen> {
   }
 
   Widget topInfo(context, screenWidth) {
+    Image accentBanner = Image.asset(
+      'images/accentBanner1.png',
+      width: screenWidth * .9,
+    );
+    double padding = screenWidth * .01;
+
+    double textSize = screenWidth * .03;
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SizedBox(
         width: screenWidth,
         height: ((screenWidth * .9) / 5) * 2.9,
         child: Container(
-          color: Colors.grey.shade200,
-          padding: const EdgeInsets.all(16.0),
+          color: Color(0xFF7d7d7c),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                printShopAbout,
-                style: Theme.of(context).textTheme.bodyMedium,
+              Padding(
+                padding: EdgeInsets.all(padding),
+                child: Text(welcomeMessage,
+                    style: TextStyle(
+                      fontSize: textSize,
+                    )),
               ),
-              SizedBox(height: 8.0),
-              Text(
-                printShopInstructions,
-                style: Theme.of(context).textTheme.bodyMedium,
+              // SizedBox(height: 8.0),
+              Padding(
+                padding: EdgeInsets.all(padding),
+                child: Text(
+                  printShopAbout,
+                  style: TextStyle(
+                    fontSize: textSize,
+                  ),
+                ),
               ),
-              SizedBox(height: 8.0),
-              Text(
-                printShopPaymentInstructions,
-                style: Theme.of(context).textTheme.bodyMedium,
+              // SizedBox(height: 8.0),
+              Padding(
+                padding: EdgeInsets.all(padding),
+                child: Text(
+                  printShopInstructions,
+                  style: TextStyle(
+                    fontSize: textSize,
+                  ),
+                ),
               ),
+              // SizedBox(height: 8.0),
+              Padding(
+                padding: EdgeInsets.all(padding),
+                child: Text(
+                  printShopPaymentInstructions,
+                  style: TextStyle(
+                    fontSize: textSize,
+                  ),
+                ),
+              ),
+              Spacer(),
+              accentBanner,
             ],
           ),
         ),

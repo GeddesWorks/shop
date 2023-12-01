@@ -12,6 +12,8 @@ const String printShopInstructions =
 const String printShopPaymentInstructions =
     "We take Paypal, Venmo, and CashApp. We take payment after the order has been accepted.";
 
+const String welcomeMessage = "Welcome to GeddesWorks Prints";
+
 const List<String> welcomeImageLinks = [
   "https://firebasestorage.googleapis.com/v0/b/geddesworks-394c1.appspot.com/o/butterfly_big%2FOptimized-Butterfly2.jpeg?alt=media&token=67f6dd8a-1b59-48f1-a5e4-db7c2f77059f",
   "https://firebasestorage.googleapis.com/v0/b/geddesworks-394c1.appspot.com/o/void_big%2FOptimized-sadfsadfasfasdfasdf111111111.jpeg?alt=media&token=5604caf1-5ccf-4df6-bd10-f234e3afcfdd",
