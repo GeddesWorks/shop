@@ -27,7 +27,7 @@ jobs:
       run: flutter packages get
       working-directory: ./webshop
     - name: Build Web
-      run: flutter build web # --base-href "/shop/"
+      run: flutter build web --web-renderer html # --base-href "/shop/"
       working-directory: ./webshop
     - name: Deploy
       run: |
