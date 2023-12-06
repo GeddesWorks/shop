@@ -87,26 +87,31 @@ class Footer extends StatelessWidget {
               ),
             ],
           ),
-          IconButton(
-            onPressed: () {
-              js.context
-                  .callMethod('open', ['https://venmo.com/u/Collin-Geddes']);
-            },
-            icon: venmoLogo,
-          ),
-          IconButton(
-            onPressed: () {
-              js.context
-                  .callMethod('open', ["https://cash.app/\$CollinGeddes"]);
-            },
-            icon: cashappLogo,
-          ),
-          IconButton(
-            onPressed: () {
-              js.context.callMethod('open',
-                  ['https://www.paypal.me/Collins3DPrintsOK?locale.x=en_US']);
-            },
-            icon: paypalLogo,
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  js.context.callMethod(
+                      'open', ['https://venmo.com/u/Collin-Geddes']);
+                },
+                icon: venmoLogo,
+              ),
+              IconButton(
+                onPressed: () {
+                  js.context
+                      .callMethod('open', ["https://cash.app/\$CollinGeddes"]);
+                },
+                icon: cashappLogo,
+              ),
+              IconButton(
+                onPressed: () {
+                  js.context.callMethod('open', [
+                    'https://www.paypal.me/Collins3DPrintsOK?locale.x=en_US'
+                  ]);
+                },
+                icon: paypalLogo,
+              ),
+            ],
           ),
           if (screenWidth > 600)
             ElevatedButton(

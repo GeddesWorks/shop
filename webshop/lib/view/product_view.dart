@@ -269,12 +269,13 @@ class ProductViewState extends State<ProductView> {
                 : null,
             autoplay: true,
             autoplayDelay: 5000,
-            itemCount: model.product.imageUrls?.length ?? 0,
+            itemCount: model.product.primaryUrls?.length ?? 0,
             itemBuilder: (context, index) {
               return WebImage(
-                url: model.product.imageUrls?[index] ??
-                    'https://imgs.search.brave.com/2ReQeXoSJNl54r5vmMTh340F_J3vLyVIjIziZ3fQHF8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG40/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvc2VjdXJpdHkt/MjgzLzY0LzEzLTEy/OC5wbmc',
-              );
+                  url: model.product.primaryUrls?[index] ??
+                      'https://imgs.search.brave.com/2ReQeXoSJNl54r5vmMTh340F_J3vLyVIjIziZ3fQHF8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG40/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvc2VjdXJpdHkt/MjgzLzY0LzEzLTEy/OC5wbmc',
+                  backupUrl: model.product.imageUrls?[index] ??
+                      'https://imgs.search.brave.com/2ReQeXoSJNl54r5vmMTh340F_J3vLyVIjIziZ3fQHF8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG40/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvc2VjdXJpdHkt/MjgzLzY0LzEzLTEy/OC5wbmc');
             },
             pagination: const SwiperPagination(
               builder: DotSwiperPaginationBuilder(

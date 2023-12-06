@@ -4,6 +4,7 @@ import 'package:webshop/view/web_image.dart';
 
 class Product {
   List<String>? imageUrls;
+  List<String>? primaryUrls;
   final String name;
   final String description;
   final double price;
@@ -13,6 +14,7 @@ class Product {
 
   Product(
       {this.imageUrls,
+      this.primaryUrls,
       required this.id,
       required this.name,
       required this.description,

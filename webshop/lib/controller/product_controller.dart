@@ -34,6 +34,7 @@ class ProductController {
             price: element["price"],
             ship: element["ship"] ?? false,
             imageUrls: List.from(element["imageUrls"]),
+            primaryUrls: List.from(element["primaryUrls"]),
           ));
         });
       });
@@ -50,6 +51,9 @@ class ProductController {
             Product(
                 id: "error",
                 imageUrls: [
+                  'https://imgs.search.brave.com/2ReQeXoSJNl54r5vmMTh340F_J3vLyVIjIziZ3fQHF8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG40/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvc2VjdXJpdHkt/MjgzLzY0LzEzLTEy/OC5wbmc'
+                ],
+                primaryUrls: [
                   'https://imgs.search.brave.com/2ReQeXoSJNl54r5vmMTh340F_J3vLyVIjIziZ3fQHF8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG40/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvc2VjdXJpdHkt/MjgzLzY0LzEzLTEy/OC5wbmc'
                 ],
                 name: "Error getting products: $e",

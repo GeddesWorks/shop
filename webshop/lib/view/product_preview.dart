@@ -38,10 +38,13 @@ Widget product_preview(
                   : null,
               autoplay: true,
               autoplayDelay: 5000,
-              itemCount: product.imageUrls?.length ?? 0,
+              itemCount: product.primaryUrls?.length ?? 0,
               itemBuilder: (context, index) {
                 return WebImage(
-                  url: product.imageUrls?[index] ??
+                  url: product.primaryUrls?[index] ??
+                      'https://imgs.search.brave.com/2ReQeXoSJNl54r5vmMTh340F_J3vLyVIjIziZ3fQHF8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG40/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvc2VjdXJpdHkt/MjgzLzY0LzEzLTEy/OC5wbmc',
+                  backupUrl: product.imageUrls?[
+                          product.imageUrls!.length <= index ? 0 : index] ??
                       'https://imgs.search.brave.com/2ReQeXoSJNl54r5vmMTh340F_J3vLyVIjIziZ3fQHF8/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG40/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvc2VjdXJpdHkt/MjgzLzY0LzEzLTEy/OC5wbmc',
                 );
               },
@@ -52,7 +55,7 @@ Widget product_preview(
             ),
           ),
           Wrap(
-            children: product.imageUrls
+            children: product.primaryUrls
                     ?.map((item) => Container(
                           width: 0,
                           height: 0,
